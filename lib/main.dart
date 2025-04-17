@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:health_mobile_app/providers/todo_list_provider.dart';
 import 'package:health_mobile_app/screens/home.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => TodoListProvider())
+      ],
+      child: MyApp()
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
