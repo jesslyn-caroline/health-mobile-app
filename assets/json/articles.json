@@ -3,7 +3,9 @@
         "id": 1,
         "imageUrl": "assets/images/article-page-1.png",
         "title": "Why Sleep is Your Superpower for Better Health",
+        "author": "John Doe",
         "dateCreated": "18 Mar 2025",
+        "category": "Lifestyle",
         "description": "Discover how quality sleep can boost your health, improve focus, and increase longevity.",
         "detail": [
             "Sleep is often overlooked, but it is one of the most powerful tools for maintaining overall health. When you sleep, your body repairs tissues, strengthens the immune system, and consolidates memories, making it crucial for both physical and mental well-being. Poor sleep can lead to cognitive decline, weakened immunity, and an increased risk of chronic conditions such as heart disease and diabetes. Studies have shown that individuals who consistently get less than six hours of sleep per night are more prone to stress, mood swings, and reduced productivity.",
@@ -14,7 +16,9 @@
         "id": 2,
         "imageUrl": "assets/images/article-page-2.png",
         "title": "Morning Walks: The Secret to a Healthier You",
+        "author": "Jane Smith",
         "dateCreated": "05 Feb 2025",
+        "category": "Fitness",
         "description": "Learn why a simple morning walk can transform your physical and mental health.",
         "detail": [
             "Starting your day with a morning walk is one of the simplest yet most effective ways to boost your overall health. A brisk walk in the fresh air stimulates circulation, enhances cardiovascular fitness, and helps regulate blood sugar levels. It also promotes the release of endorphins, the body's natural feel-good hormones, reducing stress and anxiety. Many studies suggest that individuals who engage in regular morning walks have improved mental clarity, better focus, and greater energy levels throughout the day.",
@@ -25,7 +29,9 @@
         "id": 3,
         "imageUrl": "assets/images/article-page-3.png",
         "title": "Hydration Hacks: Drink Smarter, Stay Healthier",
+        "author": "Alice Johnson",
         "dateCreated": "01 Jan 2025",
+        "category": "Lifestyle",
         "description": "Practical tips to stay hydrated and keep your body functioning at its best.",
         "detail": [
             "Proper hydration is essential for maintaining energy levels, supporting digestion, and regulating body temperature. Many people underestimate their daily water needs, leading to fatigue, headaches, and even poor concentration. Hydration doesn't just mean drinking plain water—it includes consuming water-rich foods like cucumbers, watermelon, and oranges, which help replenish lost fluids while providing essential vitamins and minerals. Additionally, herbal teas and infused water with lemon or mint can make hydration more enjoyable.",
@@ -36,7 +42,9 @@
         "id": 4,
         "imageUrl": "assets/images/article-page-4.png",
         "title": "Simple Ways to Track Water Intake and Avoid Dehydration",
+        "author": "Jane Smith",
         "dateCreated": "06 Dec 2024",
+        "category": "Lifestyle",
         "description": "Easy methods to ensure you're drinking enough water daily.",
         "detail": [
             "Many people struggle with drinking enough water throughout the day, often leading to dehydration without realizing it. Dehydration can cause dizziness, fatigue, dry skin, and even muscle cramps. One simple method to track your water intake is the '8x8 rule,' which suggests drinking eight 8-ounce glasses of water daily. However, water needs vary depending on activity level, climate, and individual health conditions. Instead of relying solely on thirst cues, setting measurable hydration goals can be more effective.",
@@ -47,7 +55,9 @@
         "id" : 5,
         "imageUrl" : "assets/images/article-page-5.jpeg",
         "title" : "Balanced Diet in Maintaining Long-Term Health",
+        "author" : "John Doe",
         "dateCreated" : "15 Nov 2024",
+        "category": "Healthy Food",
         "description" : "A balanced diet supports overall health, while processed foods raise risks. Healthy eating and exercise promote well-being and weight management.",
         "detail" : [
           "In today's fast-paced world, maintaining a balanced diet has become increasingly important for preserving long-term health. With an abundance of food options, many of which are processed and high in sugar, salt, and unhealthy fats, it's easy to lose sight of what truly nourishes the body. However, understanding the role of nutrition can make all the difference in achieving a healthy lifestyle.",
