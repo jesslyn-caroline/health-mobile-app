@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:health_mobile_app/components/navbar.dart';
+import 'package:health_mobile_app/providers/user_profile_provider.dart';
 import 'package:health_mobile_app/screens/articles.dart';
 import 'package:health_mobile_app/components/featured_article_card.dart';
 import 'package:health_mobile_app/screens/user_profile.dart';
@@ -34,7 +36,7 @@ class Home extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Good day, Cinnamon 👋', style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w700)),
+                                  Text('Good day, ${context.watch<UserProfileProvider>().username} 👋', style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w700)),
                                   Text('How are you today?', style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600, color: Color(0xFF898989)))
                                 ]
                               )
