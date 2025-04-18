@@ -19,9 +19,10 @@ class InputField extends StatelessWidget {
           TextField(
             controller: controller,
             obscureText: (inputType == "password" ? true : false),
+            style: GoogleFonts.poppins(),
             decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-              hintStyle: GoogleFonts.poppins(color: Color(0xFF898989), fontWeight: FontWeight.w500),
+              hintStyle: GoogleFonts.poppins(color: Color(0xFF898989)),
               errorStyle: GoogleFonts.poppins(),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
