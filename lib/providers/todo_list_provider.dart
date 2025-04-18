@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 class TodoListProvider with ChangeNotifier {
 
   List <Map<String, dynamic>> todoList = [
-    {
-      "task" : "Hellooooooo",
-      "finished" : false
-    }
+    
   ];
 
+  int totalFinished = 0;
+
+  void setTotalFinished() {
+    totalFinished = todoList.where((e) => e["finished"] == true).length;
+    notifyListeners();
+  }
 
   String currentActive = "todo";
 
@@ -16,7 +19,6 @@ class TodoListProvider with ChangeNotifier {
     currentActive = active;
     notifyListeners();
   }
-
 
   TextEditingController taskC = TextEditingController();
   String? categoryValue = "";
@@ -32,10 +34,13 @@ class TodoListProvider with ChangeNotifier {
     if (!taskC.text.isEmpty && categoryValue != "") {
       todoList.add({
         "task" : taskC.text,
+        "category" : categoryValue,
         "finished" : false
       });
-    }
 
+      removeNewTask();
+    }
+    
     notifyListeners();
   }
 
@@ -44,5 +49,12 @@ class TodoListProvider with ChangeNotifier {
     categoryValue = "";
     notifyListeners();
   }
-  
+
+  void finishTask(dynamic task, bool? value) {
+    task["finished"] = value;
+    notifyListeners();
+
+    setTotalFinished();
+  }
+
 }
