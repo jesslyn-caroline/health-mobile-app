@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:health_mobile_app/providers/todo_list_provider.dart';
 import 'package:health_mobile_app/screens/todo_list.dart';
+import 'package:health_mobile_app/components/new_task.dart';
 
 class TodoPage extends StatefulWidget {
   const TodoPage({super.key});
@@ -100,9 +102,15 @@ class _TodoPageState extends State<TodoPage> {
                 SizedBox(height: 15),
                 Padding(padding: EdgeInsets.symmetric(horizontal: 10), child: Divider(),),
                 SizedBox(height: 15),
-                Container(
+                (context.watch<TodoListProvider>().currentActive == "todo"? 
+                Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: TodoList(),
+                  child: NewTask()
+                ) : 
+                Container(width: double.infinity)),   
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: TodoList()
                 ),    
               ],
             )
