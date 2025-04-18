@@ -57,13 +57,28 @@ class _TodoPageState extends State<TodoPage> {
                           context.read<TodoListProvider>().changeActive("todo");
                         })},
                         child: Container(
-                          padding: EdgeInsets.fromLTRB(23, 6, 23, 6),
+                          padding: EdgeInsets.fromLTRB(13, 6, 13, 6),
                           decoration: BoxDecoration(
                             color: (context.watch<TodoListProvider>().currentActive == "todo"? Colors.black : Colors.white),
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(color: Colors.black)
                           ),
-                          child: Text("To Do", style: GoogleFonts.poppins(color: (context.watch<TodoListProvider>().currentActive == "todo"? Colors.white : Colors.black), fontSize: 13, fontWeight: FontWeight.w600),)
+                          child: Row(
+                            children: [
+                              Text("Todo", style: GoogleFonts.poppins(color: (context.watch<TodoListProvider>().currentActive == "todo"? Colors.white : Colors.black), fontSize: 13, fontWeight: FontWeight.w600),),
+                              SizedBox(width: 10),
+                              Container(
+                                width: 20,
+                                height: 20,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: (context.watch<TodoListProvider>().currentActive == "todo"? Colors.white : Colors.black),
+                                  shape: BoxShape.circle
+                                ),
+                                child: Text("${context.watch<TodoListProvider>().totalUnfinished}", style: GoogleFonts.poppins(color: (context.watch<TodoListProvider>().currentActive == "todo"? Colors.black : Colors.white), fontSize: 11, fontWeight: FontWeight.w600),),
+                              )
+                            ],
+                          )
                         ),
                       ),
                       SizedBox(width: 15),
