@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_mobile_app/components/filter_article_chip.dart';
-
 import 'package:health_mobile_app/components/navbar.dart';
 import 'package:health_mobile_app/components/article_card.dart';
 

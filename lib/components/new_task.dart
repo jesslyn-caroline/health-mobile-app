@@ -81,7 +81,7 @@ class NewTask extends StatelessWidget {
           ],
         ),
         SizedBox(height: 15),
-        Padding(padding: EdgeInsets.symmetric(horizontal: 10), child: Divider(),),
+        Divider(),
         SizedBox(height: 15),
       ],
     );
