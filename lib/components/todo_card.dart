@@ -10,26 +10,32 @@ class TodoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CheckboxListTile(
-      
-      tileColor: Colors.white,
-      title: Text(task["task"], style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w500)),
-      subtitle: Text(task["category"], style: 
-        GoogleFonts.poppins(
-          fontSize: 13, 
-          fontWeight: FontWeight.w500,
-          color: (
-            task["category"] == "Fitness" ? Color(0xff0369A1) :
-            task["category"] == "Lifestyle" ? Color(0xff16A34A) :
-            task["category"] == "Self Care" ? Color(0xffCA8A04) :
-            Colors.blueGrey
-          )
-        )
+    return Container(
+      margin: EdgeInsets.only(bottom: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.black)
       ),
-      value: task["finished"], 
-      onChanged: (value) {
-        func(task, value);
-      }
+      child: CheckboxListTile(
+        tileColor: Colors.white,
+        title: Text(task["task"], style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w500)),
+        subtitle: Text(task["category"], style: 
+          GoogleFonts.poppins(
+            fontSize: 13, 
+            fontWeight: FontWeight.w500,
+            color: (
+              task["category"] == "Fitness" ? Color(0xff0369A1) :
+              task["category"] == "Nutrition" ? Color(0xff16A34A) :
+              task["category"] == "Self Care" ? Color(0xffCA8A04) :
+              Colors.blueGrey
+            )
+          )
+        ),
+        value: task["finished"], 
+        onChanged: (value) {
+          func(task, value);
+        }
+      )
     );
   }
 }
