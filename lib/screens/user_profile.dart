@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:google_fonts/google_fonts.dart';
+
 import 'package:health_mobile_app/providers/user_profile_provider.dart';
 import 'package:health_mobile_app/screens/change_password.dart';
 import 'package:health_mobile_app/screens/change_username.dart';
-
-import 'package:provider/provider.dart';
 
 class UserProfile extends StatefulWidget {
   const UserProfile({super.key});
@@ -70,7 +71,7 @@ class _UserProfileState extends State<UserProfile> {
                         children: [
                           Icon(Icons.account_circle_outlined, color: Colors.black,),
                           SizedBox(width: 7),
-                          Text("Account information", style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600))
+                          Text("Account Information", style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600))
                         ],
                       ),
                       children: [
@@ -87,7 +88,7 @@ class _UserProfileState extends State<UserProfile> {
                           subtitle: Text("${context.watch<UserProfileProvider>().email}", style: GoogleFonts.poppins(color: Colors.grey)),
                         ),
                         ListTile(
-                          title: Text("Username", style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600)),
+                          title: Text("Password", style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600)),
                           subtitle: Row(
                             children: List.generate(10, (index) {
                               return Container(width: 8, height: 8, 
