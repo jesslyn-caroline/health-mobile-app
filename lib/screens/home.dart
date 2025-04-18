@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:health_mobile_app/components/navbar.dart';
 import 'package:health_mobile_app/screens/articles.dart';
 import 'package:health_mobile_app/components/featured_article_card.dart';
+import 'package:health_mobile_app/screens/user_profile.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -39,13 +40,18 @@ class Home extends StatelessWidget {
                               )
                             ]
                           ),
-                          Container(
-                            width: 50, height: 50,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFD9D9D9),
-                              borderRadius: BorderRadius.circular(5)
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => UserProfile()));
+                            },
+                            child: Container(
+                              width: 50, height: 50,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFD9D9D9),
+                                borderRadius: BorderRadius.circular(5)
+                              )
                             )
-                          )
+                          ),
                         ]
                       ),
                       SizedBox(height: 30),
