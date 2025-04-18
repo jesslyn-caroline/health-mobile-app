@@ -88,7 +88,7 @@ class _TodoPageState extends State<TodoPage> {
                                   color: (context.watch<TodoListProvider>().currentActive == "finished"? Colors.white : Colors.black),
                                   shape: BoxShape.circle
                                 ),
-                                child: Text("1", style: GoogleFonts.poppins(color: (context.watch<TodoListProvider>().currentActive == "finished"? Colors.black : Colors.white), fontSize: 11, fontWeight: FontWeight.w600),),
+                                child: Text("${context.watch<TodoListProvider>().totalFinished}", style: GoogleFonts.poppins(color: (context.watch<TodoListProvider>().currentActive == "finished"? Colors.black : Colors.white), fontSize: 11, fontWeight: FontWeight.w600),),
                               )
                             ],
                           )
