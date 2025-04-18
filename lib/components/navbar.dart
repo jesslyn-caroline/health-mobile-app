@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:health_mobile_app/screens/home.dart';
 import 'package:health_mobile_app/screens/articles.dart';
 import 'package:health_mobile_app/screens/todo_page.dart';
+import 'package:health_mobile_app/screens/user_profile.dart';
 
 class Navbar extends StatelessWidget {
   const Navbar({super.key, required this.page});
@@ -59,17 +60,22 @@ class Navbar extends StatelessWidget {
               children: [
                 Icon(Icons.article_rounded, color: page == 'todo' ? Colors.white : Color(0xFFC8C8C8), size: 30),
                 SizedBox(height: 3),
-                Text('To-do', style: GoogleFonts.poppins(color: page == 'togo' ? Colors.white : Color(0xFFC8C8C8), fontSize: 13, fontWeight: FontWeight.w600))
+                Text('To-do', style: GoogleFonts.poppins(color: page == 'todo' ? Colors.white : Color(0xFFC8C8C8), fontSize: 13, fontWeight: FontWeight.w600))
               ]
             ),
           ),
-          Column(
-            children: [
-              Icon(Icons.person_2_rounded, color: page == 'profile' ? Colors.white : Color(0xFFC8C8C8), size: 30),
-              SizedBox(height: 3),
-              Text('Profile', style: GoogleFonts.poppins(color: page == 'profile' ? Colors.white : Color(0xFFC8C8C8), fontSize: 13, fontWeight: FontWeight.w600))
-            ]
-          )
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => UserProfile()));
+            },
+            child: Column(
+              children: [
+                Icon(Icons.person_2_rounded, color: page == 'profile' ? Colors.white : Color(0xFFC8C8C8), size: 30),
+                SizedBox(height: 3),
+                Text('Profile', style: GoogleFonts.poppins(color: page == 'profile' ? Colors.white : Color(0xFFC8C8C8), fontSize: 13, fontWeight: FontWeight.w600))
+              ]
+            ),
+          ),
         ]
       )
     );
