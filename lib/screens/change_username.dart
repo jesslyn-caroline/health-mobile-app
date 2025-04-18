@@ -1,9 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:provider/provider.dart';
+import 'package:health_mobile_app/components/input_field.dart';
 import 'package:health_mobile_app/providers/user_profile_provider.dart';
 
 class ChangeUsername extends StatelessWidget {
@@ -20,7 +20,11 @@ class ChangeUsername extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               IconButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () { 
+                  context.read<UserProfileProvider>().clearController();
+                  context.read<UserProfileProvider>().resetinvalidMsg();
+                  Navigator.pop(context);
+                },
                 style: IconButton.styleFrom(overlayColor: Colors.transparent),
                 icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black, size: 20)
               ),
@@ -32,62 +36,21 @@ class ChangeUsername extends StatelessWidget {
               SizedBox(height: 15),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("New username", style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600),),
-                      SizedBox(height: 5,),
-                      TextField(
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-                          hintStyle: GoogleFonts.poppins(color: Color(0xFF898989), fontWeight: FontWeight.w500),
-                          errorStyle: GoogleFonts.poppins(),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(color: Color(0xFF1E1E1E))
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(color: Color(0xFFC8C8C8))
-                          ),
-                          hintText: "Enter new username",
-                        ),
-                      )
-                    ],
-                  ),
+                  child: InputField(
+                    inputType: "username",
+                    inputTitle: "New username",
+                    controller: context.watch<UserProfileProvider>().newusernameC, 
+                    invalidMsg: context.watch<UserProfileProvider>().invalidMsgUsername
                 ),
               ),
               SizedBox(height: 15),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Current password", style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600),),
-                      SizedBox(height: 5,),
-                      TextField(
-                        controller: context.watch<UserProfileProvider>().currentpasswordC,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-                          hintStyle: GoogleFonts.poppins(color: Color(0xFF898989), fontWeight: FontWeight.w500),
-                          errorStyle: GoogleFonts.poppins(),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(color: Color(0xFF1E1E1E))
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(color: Color(0xFFC8C8C8))
-                          ),
-                          hintText: "Enter current password",
-                          errorText: context.watch<UserProfileProvider>().isPassword ? null: "Password not match!",
-                        ),
-                      )
-                    ],
-                  ),
+                  child: InputField(
+                    inputType: "password",
+                    inputTitle: "Current password",
+                    controller: context.watch<UserProfileProvider>().currentpasswordC, 
+                    invalidMsg: context.watch<UserProfileProvider>().invalidMsgCurrentPassword
                 ),
               ),
               SizedBox(height: 20,),
@@ -95,12 +58,18 @@ class ChangeUsername extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: ElevatedButton(
-                  onPressed: () { context.read<UserProfileProvider>().confirmCurrentPassword(); }, 
+                  onPressed: () { 
+                    context.read<UserProfileProvider>().confirmCurrentPassword(); 
+                    context.read<UserProfileProvider>().checkUsernameValidity();
+                    bool isChanged = context.read<UserProfileProvider>().changeUsername();
+
+                    if (isChanged) Navigator.pop(context);
+                  }, 
                   style:ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
                     padding: EdgeInsets.fromLTRB(18, 15, 18, 15),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10), // <-- Radius
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   child: Text("Change", style: GoogleFonts.poppins(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w600),)
