@@ -7,9 +7,17 @@ class TodoListProvider with ChangeNotifier {
   ];
 
   int totalFinished = 0;
+  int totalUnfinished = 0;
 
   void setTotalFinished() {
     totalFinished = todoList.where((e) => e["finished"] == true).length;
+
+    notifyListeners();
+  }
+
+  void setTotalUnfinished() {
+    totalUnfinished = todoList.where((e) => e["finished"] == false).length;
+
     notifyListeners();
   }
 
@@ -39,6 +47,7 @@ class TodoListProvider with ChangeNotifier {
       });
 
       removeNewTask();
+      setTotalUnfinished();
     }
     
     notifyListeners();
@@ -55,6 +64,7 @@ class TodoListProvider with ChangeNotifier {
     notifyListeners();
 
     setTotalFinished();
+    setTotalUnfinished();
   }
 
 }
