@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'dart:convert';
 import 'package:flutter/services.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+
 import 'package:health_mobile_app/components/filter_article_chip.dart';
 import 'package:health_mobile_app/components/navbar.dart';
 import 'package:health_mobile_app/components/article_card.dart';
@@ -19,7 +19,7 @@ class _ArticlesState extends State<Articles> {
   List articleList = [];
 
   Future<void> getArticles() async {
-    final String response = await rootBundle.loadString('/json/articles.json');
+    final String response = await rootBundle.loadString('assets/json/articles.json');
     final data = await jsonDecode(response);
     setState(() => articleList = data);
   }
@@ -30,31 +30,32 @@ class _ArticlesState extends State<Articles> {
     getArticles();
   }
 
-  List <Map <String, dynamic>> filterCategories = [
+  List<Map<String, dynamic>> articleCategory = [
     {
-      "name" : "Lifestyle",
-      "isChecked" : false,
+      "category": "Lifestyle",
+      "selected": false
     },
     {
-      "name": "Healthy Food",
-      "isChecked" : false,
+      "category": "Healthy Food",
+      "selected": false
     },
     {
-      "name" : "Fitness",
-      "isChecked" : false
+      "category": "Fitness",
+      "selected": false
     }
   ];
 
-  List <String> filteredCategory = [];
+  List<String> selectedCategory = [];
 
-  void filterArticles(dynamic category, bool value) {
+  void selectCategory(Map<String, dynamic> category, bool value) {
     setState(() {
-      if (category["isChecked"]) filteredCategory.remove(category["name"]);
-      else filteredCategory.add(category["name"]);
-
-      category["isChecked"] = value;
-
-      print(filteredCategory);
+      category["selected"] = value;
+      if (value) {
+        selectedCategory.add(category["category"]);
+      } else {
+        selectedCategory.remove(category["category"]);
+      }
+      print(selectedCategory);
     });
   }
 
@@ -69,7 +70,7 @@ class _ArticlesState extends State<Articles> {
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(10, 30, 10, 45),
+                  padding: EdgeInsets.fromLTRB(10, 20, 10, 45),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -89,28 +90,25 @@ class _ArticlesState extends State<Articles> {
                           ]
                         ),
                       ),
-                      SizedBox(height: 30),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: Text("Filter by tags", style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 14),),
-                      ),
-                      SizedBox(height: 10),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child:  Row(
-                          children: [
-                            ...filterCategories.map((category) => FilterArticleChip(category: category, func: (category, value) {filterArticles(category, value);}))
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 30),
+                      SizedBox(height: 20),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ...articleList.where((article) {
-                              return filteredCategory.contains(article['category']) || filteredCategory.isEmpty ? true : false;
-                            }).map((article) {
+                            Text("Filter by tags", style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500)),
+                            SizedBox(height: 4),
+                            Row(
+                              children: [
+                                ...articleCategory.map((category) {
+                                  return FilterArticleChip(category: category, onSelectedHandler: selectCategory);
+                                })
+                              ]
+                            ),
+                            SizedBox(height: 20),
+                            ...articleList
+                            .where((article) => selectedCategory.contains(article["category"]) || selectedCategory.isEmpty)
+                            .map((article) {
                               return ArticleCard(
                                 title: article['title'],
                                 author: article['author'],
@@ -128,7 +126,7 @@ class _ArticlesState extends State<Articles> {
                 )
               ),
             ),
-            Navbar(page: 'articles')
+            Navbar(page: 'Articles')
           ]
         ),
       )
