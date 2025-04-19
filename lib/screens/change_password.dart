@@ -3,8 +3,9 @@ import 'package:provider/provider.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:health_mobile_app/components/input_field.dart';
-import 'package:health_mobile_app/providers/user_profile_provider.dart';
+import 'package:health_mobile_app/components/change_user_info_field.dart';
+import 'package:health_mobile_app/providers/profile_provider.dart';
+
 
 class ChangePassword extends StatelessWidget {
   const ChangePassword({super.key});
@@ -15,14 +16,14 @@ class ChangePassword extends StatelessWidget {
       backgroundColor: Color(0xFFFAFAFA),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.fromLTRB(10, 30, 10, 45),
+          padding: EdgeInsets.fromLTRB(10, 20, 10, 45),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               IconButton(
-                onPressed: () { 
-                  context.read<UserProfileProvider>().clearController();
-                  context.read<UserProfileProvider>().resetinvalidMsg();
+                onPressed: () {
+                  context.read<ProfileProvider>().resetErrorMessage();
+                  context.read<ProfileProvider>().clearController();
                   Navigator.pop(context);
                 },
                 style: IconButton.styleFrom(overlayColor: Colors.transparent),
@@ -31,66 +32,65 @@ class ChangePassword extends StatelessWidget {
               SizedBox(height: 15),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Text("Change Password", style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w700)),
+                child: Text("Change Password", style: GoogleFonts.poppins(fontSize: 17, fontWeight: FontWeight.w700)),
               ),
               SizedBox(height: 15),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: InputField(
+                  child: ChangeUserInfoField(
                     inputType: "password",
                     inputTitle: "Current password",
-                    controller: context.watch<UserProfileProvider>().currentpasswordC, 
-                    invalidMsg: context.watch<UserProfileProvider>().invalidMsgCurrentPassword
-                ),
+                    controller: context.watch<ProfileProvider>().passwordC, 
+                    errorMessage: context.watch<ProfileProvider>().passwordErrorMessage
+                )
               ),
               SizedBox(height: 15),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: InputField(
+                  child: ChangeUserInfoField(
                     inputType: "password",
                     inputTitle: "New password",
-                    controller: context.watch<UserProfileProvider>().newpasswordC, 
-                    invalidMsg: context.watch<UserProfileProvider>().invalidMsgNewPassword
+                    controller: context.watch<ProfileProvider>().newPasswordC, 
+                    errorMessage: context.watch<ProfileProvider>().newPasswordErrorMessage
                 ),
               ),
               SizedBox(height: 15),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: InputField(
+                  child: ChangeUserInfoField(
                     inputType: "password",
                     inputTitle: "Confirm new password",
-                    controller: context.watch<UserProfileProvider>().confirmnewpasswordC, 
-                    invalidMsg: context.watch<UserProfileProvider>().invalidMsgConfirmNewPassword
+                    controller: context.watch<ProfileProvider>().confirmNewPasswordC, 
+                    errorMessage: context.watch<ProfileProvider>().confirmPasswordErrorMessage
                 ),
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 20),
               Container(
                 alignment: Alignment.centerRight,
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.only(right: 10),
                 child: ElevatedButton(
                   onPressed: () { 
-                    context.read<UserProfileProvider>().confirmCurrentPassword(); 
-                    context.read<UserProfileProvider>().checkNewPassword();
-
-                    bool isChanged = context.read<UserProfileProvider>().changePassword();
-
-                    if (isChanged) Navigator.pop(context); 
+                    context.read<ProfileProvider>().confirmCurrentPassword();
+                    context.read<ProfileProvider>().checkNewPassword(); 
+                    bool isChanged = context.read<ProfileProvider>().changePassword();
+                    if (isChanged) {
+                      Navigator.pop(context);
+                    }
                   }, 
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
-                    padding: EdgeInsets.fromLTRB(18, 15, 18, 15),
+                    padding: EdgeInsets.fromLTRB(16, 15, 18, 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
-                    ),
+                    )
                   ),
-                  child: Text("Change", style: GoogleFonts.poppins(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w600),)
+                  child: Text("Change", style: GoogleFonts.poppins(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600))
                 )
               )
-              
-            ],
-          ),
+            ]
+          )
         )
-      ),
+      )
     );
   }
 }
