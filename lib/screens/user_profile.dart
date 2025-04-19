@@ -65,7 +65,7 @@ class _UserProfileState extends State<UserProfile> {
                     ExpansionTile(
                       shape: Border(),
                       tilePadding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                      backgroundColor: Colors.white,
+                      backgroundColor: Color(0xFFFAFAFA),
                       childrenPadding: EdgeInsets.fromLTRB(20, 3, 20, 3),
                       title: Row(
                         children: [
