@@ -1,40 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
-class TodoCard extends StatelessWidget {
-  TodoCard({super.key, required this.task, required this.func});
+import 'package:health_mobile_app/providers/todo_provider.dart';
 
-  dynamic task;
-  void Function(dynamic task, bool? value) func;
+class ToDoCard extends StatelessWidget {
+  ToDoCard({
+    super.key,
+    required this.task
+  });
+
+  Map<String, dynamic> task;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      margin: EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.black)
+        color: Colors.white,
+        border: Border.all(color: Color(0xFFC8C8C8), width: 1.5),
+        borderRadius: BorderRadius.circular(10)
       ),
-      child: CheckboxListTile(
-        tileColor: Colors.white,
-        title: Text(task["task"], style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w500)),
-        subtitle: Text(task["category"], style: 
-          GoogleFonts.poppins(
-            fontSize: 13, 
-            fontWeight: FontWeight.w500,
-            color: (
-              task["category"] == "Fitness" ? Color(0xff0369A1) :
-              task["category"] == "Nutrition" ? Color(0xff16A34A) :
-              task["category"] == "Self Care" ? Color(0xffCA8A04) :
-              Colors.blueGrey
-            )
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(task["title"], style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600)),
+              SizedBox(height: 4),
+              Text(task["category"], style: GoogleFonts.poppins(color: task["color"], fontSize: 13, fontWeight: FontWeight.w600))
+            ]
+          ),
+          Checkbox(
+            value: task["done"],
+            activeColor: Color(0xFF212121),
+            onChanged: (value) {
+              context.read<TodoProvider>().checkTask(task);
+            }
           )
-        ),
-        value: task["finished"], 
-        onChanged: (value) {
-          func(task, value);
-        }
+        ]
       )
     );
   }
