@@ -30,6 +30,7 @@ class UserProfileProvider with ChangeNotifier{
 
     if (username == newusernameC.text) invalidMsgUsername = "Please enter new username";
     else if (containInvalidCharacter) invalidMsgUsername = "Username may not contain special character";
+    else if (newusernameC.text.isEmpty) invalidMsgUsername = "Username may not be empty";
     else invalidMsgUsername = "";
 
     notifyListeners();
