@@ -42,4 +42,11 @@ class TodoProvider with ChangeNotifier {
     finishedCount = todoList.where((task) => task["done"]).length;
     notifyListeners();
   }
+
+  void removeTask(Map<String, dynamic> task) {
+    todoList.remove(task);
+    todoCount = todoList.where((task) => !task["done"]).length;
+    finishedCount = todoList.where((task) => task["done"]).length;
+    notifyListeners();
+  }
 }
