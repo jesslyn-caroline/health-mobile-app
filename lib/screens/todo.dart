@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:health_mobile_app/providers/page_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:health_mobile_app/providers/todo_provider.dart';
-import 'package:health_mobile_app/components/add_task.dart';
 import 'package:health_mobile_app/components/todo_card.dart';
 
 class ToDo extends StatefulWidget {
@@ -117,14 +116,12 @@ class _ToDoState extends State<ToDo> {
                             divider,
                             SizedBox(height: 16),
                             if (context.watch<TodoProvider>().active == "todo")
-                              ...[
-                                AddTask(),
-                                ...context.watch<TodoProvider>().todoList
-                                .where((task) => !task["done"])
-                                .map((task) {
-                                  return ToDoCard(task: task);
-                                })
-                              ]
+                              ...context.watch<TodoProvider>().todoList
+                              .where((task) => !task["done"])
+                              .map((task) {
+                                return ToDoCard(task: task);
+                              })
+                            
                             else
                               ...context.watch<TodoProvider>().todoList
                                 .where((task) => task["done"])
