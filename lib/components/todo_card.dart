@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:health_mobile_app/providers/todo_provider.dart';
+import 'package:provider/provider.dart';
 
 class ToDoCard extends StatelessWidget {
   ToDoCard({

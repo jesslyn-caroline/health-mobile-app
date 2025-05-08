@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:health_mobile_app/components/change_user_info_field.dart';
 import 'package:health_mobile_app/providers/profile_provider.dart';
-
+import 'package:provider/provider.dart';
 
 class ChangeUsername extends StatelessWidget {
   const ChangeUsername({super.key});
@@ -22,8 +19,8 @@ class ChangeUsername extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: () {
-                  context.read<ProfileProvider>().resetErrorMessage();
                   context.read<ProfileProvider>().clearController();
+                  context.read<ProfileProvider>().resetErrorMessage();
                   Navigator.pop(context);
                 },
                 style: IconButton.styleFrom(overlayColor: Colors.transparent),

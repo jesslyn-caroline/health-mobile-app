@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:provider/provider.dart';
 import 'package:health_mobile_app/providers/todo_provider.dart';
 
 class AddTask extends StatefulWidget {
@@ -23,6 +21,7 @@ class _AddTaskState extends State<AddTask> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextField(
           controller: taskTitleC,
@@ -49,7 +48,6 @@ class _AddTaskState extends State<AddTask> {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ...categories.map((category) {
                 return Row(
@@ -64,7 +62,8 @@ class _AddTaskState extends State<AddTask> {
                         });
                       }
                     ),
-                    Text(category, style: GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w500))
+                    Text(category, style: GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w500)),
+                    SizedBox(width: 12)
                   ]
                 );
               })
