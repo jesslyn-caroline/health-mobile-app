@@ -5,6 +5,8 @@ class ProfileProvider with ChangeNotifier {
   String password = "cinnamon123";
   String email = "cinnamon@mail.com";
 
+  bool isDark = false;
+
   String usernameErrorMessage = "";
   String passwordErrorMessage = "";
   String newPasswordErrorMessage = "";
@@ -104,6 +106,11 @@ class ProfileProvider with ChangeNotifier {
     passwordErrorMessage = "";
     newPasswordErrorMessage = "";
     confirmPasswordErrorMessage = "";
+    notifyListeners();
+  }
+
+  void switchMode() {
+    isDark = !isDark;
     notifyListeners();
   }
 }

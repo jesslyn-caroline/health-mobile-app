@@ -23,6 +23,7 @@ class _NewTaskState extends State<NewTask> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         toolbarHeight: 80,
         leading: IconButton(
           onPressed: () {
@@ -30,11 +31,10 @@ class _NewTaskState extends State<NewTask> {
             Navigator.pop(context);
           }, icon: Icon(
           Icons.arrow_back_ios_new_rounded,
-          color: Colors.black,
+          color: Theme.of(context).iconTheme.color,
           size: 20
         )),
       ),
-      backgroundColor: Color(0xFFFAFAFA),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20), 
         child: Column(
@@ -50,8 +50,8 @@ class _NewTaskState extends State<NewTask> {
               hintStyle: GoogleFonts.poppins(color: Color(0xFF898989), fontSize: 15, fontWeight: FontWeight.w600),
               floatingLabelBehavior: FloatingLabelBehavior.never,
               filled: true,
-              fillColor: Colors.white,
-              hoverColor: Colors.white,
+              fillColor: Colors.transparent,
+              hoverColor: Colors.transparent,
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Color(0xFFC8C8C8), width: 1.5),
                 borderRadius: BorderRadius.circular(10)

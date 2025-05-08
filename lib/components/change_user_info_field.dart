@@ -28,14 +28,8 @@ class ChangeUserInfoField extends StatelessWidget {
             contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
             hintStyle: GoogleFonts.poppins(color: Color(0xFF898989), fontSize: 13),
             errorStyle: GoogleFonts.poppins(),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Color(0xFF1E1E1E))
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Color(0xFFC8C8C8))
-            ),
+            focusedBorder: Theme.of(context).inputDecorationTheme.focusedBorder,
+            enabledBorder: Theme.of(context).inputDecorationTheme.enabledBorder,
             hintText: "Enter ${inputTitle.toLowerCase()}",
             errorText: (errorMessage == "" ? null : errorMessage),
           )

@@ -72,7 +72,7 @@ class _ArticlesState extends State<Articles> {
                     IconButton(
                       onPressed: () => context.read<PageProvider>().changePage(0),
                       style: IconButton.styleFrom(overlayColor: Colors.transparent),
-                      icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black, size: 20)
+                      icon: Icon(Icons.arrow_back_ios_new_rounded, color: Theme.of(context).iconTheme.color, size: 20)
                     ),
                     SizedBox(height: 15),
                     Padding(

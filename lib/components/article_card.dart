@@ -30,10 +30,10 @@ class ArticleCard extends StatelessWidget {
         width: double.infinity,
         height: 150,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).canvasColor,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
-            BoxShadow(color: Color(0xFFD9D9D9), spreadRadius: 1, blurRadius: 5, offset: Offset(0, 5))
+            BoxShadow(color: Theme.of(context).shadowColor, spreadRadius: 1, blurRadius: 5, offset: Offset(0, 5))
           ]
         ),
         child: Row(

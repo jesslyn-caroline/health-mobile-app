@@ -17,8 +17,8 @@ class ToDoCard extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       margin: EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: Color(0xFFC8C8C8), width: 1.5),
+        color: Theme.of(context).canvasColor,
+        border: Border.all(color: Theme.of(context).shadowColor, width: 1.5),
         borderRadius: BorderRadius.circular(10)
       ),
       child: Row(
@@ -35,13 +35,20 @@ class ToDoCard extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Checkbox(
-                splashRadius: 25,
-                value: task["done"],
-                activeColor: Color(0xFF212121),
-                onChanged: (value) {
-                  context.read<TodoProvider>().checkTask(task);
-                }
+              SizedBox(
+                width: 30, 
+                height: 30, 
+                child: Expanded(
+                  child: Checkbox(
+                    splashRadius: 25,
+                    value: task["done"],
+                    checkColor: Colors.white,
+                    activeColor: Color(0xFF212121),
+                    onChanged: (value) {
+                      context.read<TodoProvider>().checkTask(task);
+                    }
+                  ),
+                )
               ),
               SizedBox(width: 10),
               IconButton(

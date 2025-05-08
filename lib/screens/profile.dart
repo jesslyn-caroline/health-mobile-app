@@ -21,7 +21,7 @@ class _ProfileState extends State<Profile> {
           Expanded(
             child: Container(
               width: double.infinity,
-              color: Color(0xFF1E1E1E),
+              color: Theme.of(context).secondaryHeaderColor,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -47,7 +47,7 @@ class _ProfileState extends State<Profile> {
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFFFAFAFA),
+                        color: Theme.of(context).canvasColor,
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
                       ),
                       child: SingleChildScrollView(
@@ -68,10 +68,10 @@ class _ProfileState extends State<Profile> {
                               SizedBox(height: 16),
                               ExpansionTile(
                                 shape: Border(),
-                                backgroundColor: Color(0xFFFAFAFA),
+                                backgroundColor: Theme.of(context).canvasColor,
                                 title: Row(
                                   children: [
-                                    Icon(Icons.account_circle_outlined, color: Colors.black),
+                                    Icon(Icons.account_circle_outlined, color: Theme.of(context).iconTheme.color),
                                     SizedBox(width: 8),
                                     Text("Account Information", style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600))
                                   ]
@@ -112,13 +112,26 @@ class _ProfileState extends State<Profile> {
                                     )
                                   ),
                                 ]
-                              )
+                              ),
+                              ListTile(
+                                title: Text("Switch to Dark Mode", style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600)),
+                                trailing: Switch(
+                                  trackOutlineColor: WidgetStateProperty.all(Colors.black),
+                                  inactiveTrackColor: Colors.white,
+                                  activeTrackColor: Colors.black,
+                                  inactiveThumbColor: Colors.black,
+                                  activeColor: Colors.white,
+                                  value: context.watch<ProfileProvider>().isDark,
+                                  onChanged: (value) => context.read<ProfileProvider>().switchMode(),
+                                ),
+                              ),
+                              
                             ]
                           ),
                         ),
                       ),
                     ),
-                  )
+                  ), 
                 ]
               )
             )

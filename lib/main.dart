@@ -36,9 +36,48 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: context.watch<ProfileProvider>().isDark? 
+        ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: Colors.black,
+          canvasColor: Color(0xFF1E1E1E),
+          shadowColor: Colors.black,
+          secondaryHeaderColor: Colors.black,
+          iconTheme: IconThemeData(color: Colors.white),
+          inputDecorationTheme: InputDecorationTheme(
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey, width: 1),
+              borderRadius: BorderRadius.circular(5)
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey, width: 1),
+              borderRadius: BorderRadius.circular(5)
+            ),
+          ),
+          floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Color(0xFF1E1E1E)),
+          
+      ) : ThemeData.light().copyWith(
+        scaffoldBackgroundColor: Color(0xFFFAFAFA),
+        canvasColor: Colors.white,
+        shadowColor: Color(0xFFD9D9D9),
+        secondaryHeaderColor: Color(0xFF1E1E1E),
+        iconTheme: IconThemeData(color: Colors.black),
+        inputDecorationTheme: InputDecorationTheme(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFF1E1E1E), width: 1),
+            borderRadius: BorderRadius.circular(5)
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFF1E1E1E), width: 1),
+            borderRadius: BorderRadius.circular(5)
+          ),
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Colors.black),
+        checkboxTheme: CheckboxThemeData(
+          checkColor: MaterialStateProperty.all(Colors.black)
+        )
+      ),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Color(0xFFFAFAFA),
         body: SafeArea(
           child: context.read<PageProvider>().page[context.watch<PageProvider>().pageIndex]
         ),
@@ -64,6 +103,8 @@ class _MyAppState extends State<MyApp> {
           Builder(
             builder: (context) {
               return FloatingActionButton(
+                backgroundColor: Theme.of(context).floatingActionButtonTheme.backgroundColor,
+                child: Icon(Icons.add, color: Colors.white),
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => NewTask())

@@ -10,7 +10,6 @@ class ChangePassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFAFAFA),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.fromLTRB(10, 20, 10, 45),
@@ -24,7 +23,7 @@ class ChangePassword extends StatelessWidget {
                   Navigator.pop(context);
                 },
                 style: IconButton.styleFrom(overlayColor: Colors.transparent),
-                icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black, size: 20)
+                icon: Icon(Icons.arrow_back_ios_new_rounded, color: Theme.of(context).iconTheme.color, size: 20)
               ),
               SizedBox(height: 15),
               Padding(
@@ -75,7 +74,7 @@ class ChangePassword extends StatelessWidget {
                     }
                   }, 
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
+                    backgroundColor: Color(0xFF1E1E1E),
                     padding: EdgeInsets.fromLTRB(16, 15, 18, 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),

@@ -26,7 +26,6 @@ class _ArticleDetailState extends State<ArticleDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFAFAFA),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -108,17 +107,11 @@ class _ArticleDetailState extends State<ArticleDetail> {
                           child: TextField(
                             controller: commentController,
                             decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.message_outlined, color: Color(0xFF1E1E1E), size: 20),
+                              prefixIcon: Icon(Icons.message_outlined, color: Theme.of(context).iconTheme.color, size: 20),
                               label: Text('Type your comment here...', style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400)),
-                              floatingLabelStyle: GoogleFonts.poppins(color: Color(0xFF1E1E1E), fontSize: 14, fontWeight: FontWeight.w400),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Color(0xFF1E1E1E), width: 1),
-                                borderRadius: BorderRadius.circular(5)
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Color(0xFF1E1E1E), width: 1),
-                                borderRadius: BorderRadius.circular(5)
-                              ),
+                              floatingLabelStyle: GoogleFonts.poppins(color: Theme.of(context).iconTheme.color, fontSize: 14, fontWeight: FontWeight.w400),
+                              enabledBorder: Theme.of(context).inputDecorationTheme.enabledBorder,
+                              focusedBorder: Theme.of(context).inputDecorationTheme.focusedBorder,
                               contentPadding: EdgeInsets.symmetric(vertical: 5)
                             ),
                             style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400)
