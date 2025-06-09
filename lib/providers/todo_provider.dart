@@ -35,7 +35,6 @@ class TodoProvider with ChangeNotifier {
     notifyListeners();
   }
 
-
   void checkTask(Map<String, dynamic> task) {
     task["done"] = !task["done"];
     todoCount = todoList.where((task) => !task["done"]).length;

@@ -26,59 +26,56 @@ class _ArticleDetailState extends State<ArticleDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF1E1E1E),
+        leading: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white, size: 20)
+        )
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
               width: double.infinity,
-              padding: EdgeInsets.fromLTRB(10, 70, 10, 40),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               color: Color(0xFF1E1E1E),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextButton.icon(
-                    onPressed: () => Navigator.pop(context),
-                    style: TextButton.styleFrom(overlayColor: Colors.transparent),
-                    icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white, size: 20),
-                    label: Text('Back', style: GoogleFonts.poppins(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500, decoration: TextDecoration.underline, decorationColor: Colors.white))
-                  ),
-                  SizedBox(height: 15),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(widget.title, maxLines: 2, style: GoogleFonts.poppins(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700)),
-                        SizedBox(height: 15),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(Icons.person_rounded, color: Colors.white, size: 20),
-                                SizedBox(width: 5),
-                                Text(widget.author, style: GoogleFonts.poppins(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500))
-                              ]
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(Icons.calendar_month_rounded, color: Colors.white, size: 20),
-                                SizedBox(width: 5),
-                                Text(widget.dateCreated, style: GoogleFonts.poppins(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500))
-                              ]
-                            )
-                          ]
-                        ),
-                        SizedBox(height: 25),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(widget.imageUrl, width: double.infinity, height: 160, fit: BoxFit.cover),
-                        )
-                      ]
-                    )
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(widget.title, maxLines: 2, style: GoogleFonts.poppins(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700)),
+                      SizedBox(height: 15),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(Icons.person_rounded, color: Colors.white, size: 20),
+                              SizedBox(width: 5),
+                              Text(widget.author, style: GoogleFonts.poppins(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500))
+                            ]
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(Icons.calendar_month_rounded, color: Colors.white, size: 20),
+                              SizedBox(width: 5),
+                              Text(widget.dateCreated, style: GoogleFonts.poppins(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500))
+                            ]
+                          )
+                        ]
+                      ),
+                      SizedBox(height: 25),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(widget.imageUrl, width: double.infinity, height: 160, fit: BoxFit.cover),
+                      )
+                    ]
                   )
                 ]
               )

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_mobile_app/providers/page_provider.dart';
 import 'package:health_mobile_app/providers/profile_provider.dart';
-import 'package:health_mobile_app/screens/add_task.dart';
+import 'package:health_mobile_app/screens/new_task.dart';
 import 'package:provider/provider.dart';
 import 'package:health_mobile_app/providers/todo_provider.dart';
 
@@ -36,30 +36,32 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: context.watch<ProfileProvider>().isDark? 
-        ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: Colors.black,
-          canvasColor: Color(0xFF1E1E1E),
-          shadowColor: Colors.black,
-          secondaryHeaderColor: Colors.black,
-          iconTheme: IconThemeData(color: Colors.white),
-          inputDecorationTheme: InputDecorationTheme(
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey, width: 1),
-              borderRadius: BorderRadius.circular(5)
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey, width: 1),
-              borderRadius: BorderRadius.circular(5)
-            ),
+      debugShowCheckedModeBanner: false,
+      theme: context.watch<ProfileProvider>().isDark
+      ? ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Colors.black,
+        canvasColor: Color(0xFF1E1E1E),
+        shadowColor: Colors.black,
+        iconTheme: IconThemeData(color: Colors.white),
+        inputDecorationTheme: InputDecorationTheme(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey, width: 1),
+            borderRadius: BorderRadius.circular(5)
           ),
-          floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Color(0xFF1E1E1E)),
-          
-      ) : ThemeData.light().copyWith(
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey, width: 1),
+            borderRadius: BorderRadius.circular(5)
+          )
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black
+        )
+      )
+      : ThemeData.light().copyWith(
         scaffoldBackgroundColor: Color(0xFFFAFAFA),
         canvasColor: Colors.white,
         shadowColor: Color(0xFFD9D9D9),
-        secondaryHeaderColor: Color(0xFF1E1E1E),
         iconTheme: IconThemeData(color: Colors.black),
         inputDecorationTheme: InputDecorationTheme(
           enabledBorder: OutlineInputBorder(
@@ -69,18 +71,47 @@ class _MyAppState extends State<MyApp> {
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Color(0xFF1E1E1E), width: 1),
             borderRadius: BorderRadius.circular(5)
-          ),
+          )
         ),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Colors.black),
-        checkboxTheme: CheckboxThemeData(
-          checkColor: MaterialStateProperty.all(Colors.black)
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Color(0xFF1E1E1E),
+          foregroundColor: Colors.white
         )
       ),
-      debugShowCheckedModeBanner: false,
       home: Scaffold(
+        appBar: context.watch<PageProvider>().pageName == ""
+        ? null
+        : AppBar(
+            backgroundColor: Color(0xFF1E1E1E),
+            leading: IconButton(
+              onPressed: () {
+                if (context.read<PageProvider>().pageIndex == 2) {
+                  context.read<TodoProvider>().changeActive("todo");
+                }
+                context.read<PageProvider>().changePage(0);
+              },
+              icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white, size: 20)
+            ),
+            title: Text(context.watch<PageProvider>().pageName, style: GoogleFonts.poppins(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600)),
+            centerTitle: true
+          ),
         body: SafeArea(
-          child: context.read<PageProvider>().page[context.watch<PageProvider>().pageIndex]
+          child: context.read<PageProvider>().page[context.watch<PageProvider>().pageIndex],
         ),
+        floatingActionButton:
+        context.watch<PageProvider>().pageIndex == 2
+        ? Builder(
+          builder: (context) {
+            return FloatingActionButton(
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => AddTask())),
+              backgroundColor: Color(0xFF1E1E1E),
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+              child: Icon(Icons.add_rounded, size: 30)
+            );
+          }
+        )
+        : null,
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           iconSize: 30,
@@ -97,23 +128,7 @@ class _MyAppState extends State<MyApp> {
             BottomNavigationBarItem(icon: Icon(Icons.task_outlined), label: "Tasks"),
             BottomNavigationBarItem(icon: Icon(Icons.person_2_rounded), label: "Profile"),
           ]
-        ),
-        floatingActionButton: (
-          context.watch<PageProvider>().pageIndex == 2? 
-          Builder(
-            builder: (context) {
-              return FloatingActionButton(
-                backgroundColor: Theme.of(context).floatingActionButtonTheme.backgroundColor,
-                child: Icon(Icons.add, color: Colors.white),
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => NewTask())
-                  );
-                },
-              );
-            }
-          )
-        : null)
+        )
       )
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:health_mobile_app/providers/profile_provider.dart';
 import 'package:health_mobile_app/providers/todo_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -35,32 +36,19 @@ class ToDoCard extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                width: 30, 
-                height: 30, 
-                child: Expanded(
-                  child: Checkbox(
-                    splashRadius: 25,
-                    value: task["done"],
-                    checkColor: Colors.white,
-                    activeColor: Color(0xFF212121),
-                    onChanged: (value) {
-                      context.read<TodoProvider>().checkTask(task);
-                    }
-                  ),
-                )
+              Checkbox(
+                value: task["done"],
+                activeColor: Color(0xFF212121),
+                onChanged: (value) {
+                  context.read<TodoProvider>().checkTask(task);
+                }
               ),
-              SizedBox(width: 10),
               IconButton(
-                splashRadius: 25,
-                onPressed: () {
-                  context.read<TodoProvider>().removeTask(task);
-                }, 
-                icon: Icon(Icons.delete_forever_rounded, size: 30,)
+                onPressed: () => context.read<TodoProvider>().removeTask(task),
+                icon: Icon(Icons.delete_rounded, color: Theme.of(context).iconTheme.color, size: 28)
               )
             ]
           )
-          
         ]
       )
     );

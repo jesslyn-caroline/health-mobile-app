@@ -3,17 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:health_mobile_app/providers/todo_provider.dart';
 
-
-class NewTask extends StatefulWidget {
-  const NewTask({super.key});
+class AddTask extends StatefulWidget {
+  const AddTask({super.key});
 
   @override
-  State<NewTask> createState() => _NewTaskState();
+  State<AddTask> createState() => _AddTaskState();
 }
 
-class _NewTaskState extends State<NewTask> {
-  Widget divider = Divider();
-
+class _AddTaskState extends State<AddTask> {
   TextEditingController taskTitleC = TextEditingController();
 
   List<String> categories = ["Fitness", "Nutrition", "Self Care", "Other"];
@@ -23,45 +20,42 @@ class _NewTaskState extends State<NewTask> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        toolbarHeight: 80,
+        backgroundColor: Color(0xFF1E1E1E),
         leading: IconButton(
           onPressed: () {
             taskTitleC.clear();
             Navigator.pop(context);
-          }, icon: Icon(
-          Icons.arrow_back_ios_new_rounded,
-          color: Theme.of(context).iconTheme.color,
-          size: 20
-        )),
+          },
+          icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white, size: 20)
+        ),
+        title: Text("New Task", style: GoogleFonts.poppins(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600)),
+        centerTitle: true
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20), 
+        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 30),
         child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("Add Task", style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w700)),
-          SizedBox(height: 20),
-          TextField(
-            controller: taskTitleC,
-            maxLines: 2,
-            decoration: InputDecoration(
-              hintText: "New Task",
-              hintStyle: GoogleFonts.poppins(color: Color(0xFF898989), fontSize: 15, fontWeight: FontWeight.w600),
-              floatingLabelBehavior: FloatingLabelBehavior.never,
-              filled: true,
-              fillColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFFC8C8C8), width: 1.5),
-                borderRadius: BorderRadius.circular(10)
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextField(
+              controller: taskTitleC,
+              maxLines: 2,
+              decoration: InputDecoration(
+                hintText: "New Task",
+                hintStyle: GoogleFonts.poppins(color: Color(0xFF898989), fontSize: 15, fontWeight: FontWeight.w600),
+                floatingLabelBehavior: FloatingLabelBehavior.never,
+                filled: true,
+                fillColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFFC8C8C8), width: 1.5),
+                  borderRadius: BorderRadius.circular(10)
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFFC8C8C8), width: 1.5),
+                  borderRadius: BorderRadius.circular(10)
+                )
               ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFFC8C8C8), width: 1.5),
-                borderRadius: BorderRadius.circular(10)
-              )
-            ),
-            style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600)
+              style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600)
             ),
             SizedBox(height: 12),
             SingleChildScrollView(
@@ -116,7 +110,6 @@ class _NewTaskState extends State<NewTask> {
                       context.read<TodoProvider>().addTask(taskTitleC.text, taskCategory);
                       taskTitleC.text = "";
                       taskCategory = "Fitness";
-                      taskTitleC.clear();
                       Navigator.pop(context);
                     }
                   },
@@ -131,10 +124,10 @@ class _NewTaskState extends State<NewTask> {
                   )
                 )
               ]
-            ),
+            )
           ]
-        )
-      )
+        ),
+      ),
     );
   }
 }

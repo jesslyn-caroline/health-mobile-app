@@ -10,45 +10,33 @@ class ChangeUsername extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF1E1E1E),
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white, size: 20)
+        )
+      ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.fromLTRB(10, 20, 10, 45),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              IconButton(
-                onPressed: () {
-                  context.read<ProfileProvider>().clearController();
-                  context.read<ProfileProvider>().resetErrorMessage();
-                  Navigator.pop(context);
-                },
-                style: IconButton.styleFrom(overlayColor: Colors.transparent),
-                icon: Icon(Icons.arrow_back_ios_new_rounded, color: Theme.of(context).iconTheme.color, size: 20)
+              Text("Edit Username", style: GoogleFonts.poppins(fontSize: 17, fontWeight: FontWeight.w700)),
+              SizedBox(height: 15),
+              ChangeUserInfoField(
+                inputType: "username",
+                inputTitle: "New username",
+                controller: context.watch<ProfileProvider>().usernameC,
+                errorMessage: context.watch<ProfileProvider>().usernameErrorMessage
               ),
               SizedBox(height: 15),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Text("Edit Username", style: GoogleFonts.poppins(fontSize: 17, fontWeight: FontWeight.w700)),
-              ),
-              SizedBox(height: 15),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: ChangeUserInfoField(
-                  inputType: "username",
-                  inputTitle: "New username",
-                  controller: context.watch<ProfileProvider>().usernameC,
-                  errorMessage: context.watch<ProfileProvider>().usernameErrorMessage
-                )
-              ),
-              SizedBox(height: 15),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: ChangeUserInfoField(
-                  inputType: "password",
-                  inputTitle: "Current password",
-                  controller: context.watch<ProfileProvider>().passwordC,
-                  errorMessage: context.watch<ProfileProvider>().passwordErrorMessage
-                )
+              ChangeUserInfoField(
+                inputType: "password",
+                inputTitle: "Current password",
+                controller: context.watch<ProfileProvider>().passwordC,
+                errorMessage: context.watch<ProfileProvider>().passwordErrorMessage
               ),
               SizedBox(height: 20),
               Container(

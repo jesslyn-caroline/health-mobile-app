@@ -4,8 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_mobile_app/components/filter_article_chip.dart';
 import 'package:health_mobile_app/components/article_card.dart';
-import 'package:health_mobile_app/providers/page_provider.dart';
-import 'package:provider/provider.dart';
 
 class Articles extends StatefulWidget {
   const Articles({super.key});
@@ -65,56 +63,44 @@ class _ArticlesState extends State<Articles> {
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    IconButton(
-                      onPressed: () => context.read<PageProvider>().changePage(0),
-                      style: IconButton.styleFrom(overlayColor: Colors.transparent),
-                      icon: Icon(Icons.arrow_back_ios_new_rounded, color: Theme.of(context).iconTheme.color, size: 20)
-                    ),
-                    SizedBox(height: 15),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Don't miss the latest articles!", style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w700)),
-                          Text('Learn more, gain knowledge', style: GoogleFonts.poppins(color: Color(0xFF898989), fontSize: 15, fontWeight: FontWeight.w600)),
-                        ]
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Don't miss the latest articles!", style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w700)),
+                        Text('Learn more, gain knowledge', style: GoogleFonts.poppins(color: Color(0xFF898989), fontSize: 15, fontWeight: FontWeight.w600)),
+                      ]
                     ),
                     SizedBox(height: 20),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Filter by tags", style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500)),
-                          SizedBox(height: 4),
-                          Row(
-                            children: [
-                              ...articleCategory.map((category) {
-                                return FilterArticleChip(category: category, onSelectedHandler: selectCategory);
-                              })
-                            ]
-                          ),
-                          SizedBox(height: 20),
-                          ...articleList
-                          .where((article) => selectedCategory.contains(article["category"]) || selectedCategory.isEmpty)
-                          .map((article) {
-                            return ArticleCard(
-                              title: article['title'],
-                              author: article['author'],
-                              dateCreated: article['dateCreated'],
-                              imageUrl: article['imageUrl'],
-                              description: article['description'],
-                              detail: article['detail']
-                            );
-                          })
-                        ]
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Filter by tags", style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500)),
+                        SizedBox(height: 4),
+                        Row(
+                          children: [
+                            ...articleCategory.map((category) {
+                              return FilterArticleChip(category: category, onSelectedHandler: selectCategory);
+                            })
+                          ]
+                        ),
+                        SizedBox(height: 20),
+                        ...articleList
+                        .where((article) => selectedCategory.contains(article["category"]) || selectedCategory.isEmpty)
+                        .map((article) {
+                          return ArticleCard(
+                            title: article['title'],
+                            author: article['author'],
+                            dateCreated: article['dateCreated'],
+                            imageUrl: article['imageUrl'],
+                            description: article['description'],
+                            detail: article['detail']
+                          );
+                        })
+                      ]
                     )
                   ]
                 ),

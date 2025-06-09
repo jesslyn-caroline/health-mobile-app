@@ -5,8 +5,6 @@ class ProfileProvider with ChangeNotifier {
   String password = "cinnamon123";
   String email = "cinnamon@mail.com";
 
-  bool isDark = false;
-
   String usernameErrorMessage = "";
   String passwordErrorMessage = "";
   String newPasswordErrorMessage = "";
@@ -16,6 +14,8 @@ class ProfileProvider with ChangeNotifier {
   TextEditingController passwordC = TextEditingController();
   TextEditingController newPasswordC = TextEditingController();
   TextEditingController confirmNewPasswordC = TextEditingController();
+
+  bool isDark = false, isNotificationOn = false;
 
   void checkUsernameValidity() {
     List<String> invalidCharacter = ["!", "@", "#", "\$", "%", "^", "&", "*", "+", "=", "|", "\\", ":", ";", ","];
@@ -109,8 +109,13 @@ class ProfileProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void switchMode() {
-    isDark = !isDark;
+  void switchMode(bool value) {
+    isDark = value;
+    notifyListeners();
+  }
+
+  void switchNotification(bool value) {
+    isNotificationOn = value;
     notifyListeners();
   }
 }

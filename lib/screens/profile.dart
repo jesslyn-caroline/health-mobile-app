@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:health_mobile_app/providers/page_provider.dart';
 import 'package:health_mobile_app/providers/profile_provider.dart';
 import 'package:health_mobile_app/screens/change_password.dart';
 import 'package:health_mobile_app/screens/change_username.dart';
@@ -21,33 +20,15 @@ class _ProfileState extends State<Profile> {
           Expanded(
             child: Container(
               width: double.infinity,
-              color: Theme.of(context).secondaryHeaderColor,
+              color: Color(0xFF1E1E1E),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        IconButton(
-                          onPressed: () => context.read<PageProvider>().changePage(0),
-                          style: IconButton.styleFrom(overlayColor: Colors.transparent),
-                          icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white, size: 20)
-                        ),
-                        SizedBox(height: 15),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15),
-                          child: Text("My Profile", style: GoogleFonts.poppins(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700)),
-                        )
-                      ]
-                    ),
-                  ),
                   SizedBox(height: 24),
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Theme.of(context).canvasColor,
+                        color: Color(0xFFFAFAFA),
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
                       ),
                       child: SingleChildScrollView(
@@ -68,10 +49,10 @@ class _ProfileState extends State<Profile> {
                               SizedBox(height: 16),
                               ExpansionTile(
                                 shape: Border(),
-                                backgroundColor: Theme.of(context).canvasColor,
+                                backgroundColor: Color(0xFFFAFAFA),
                                 title: Row(
                                   children: [
-                                    Icon(Icons.account_circle_outlined, color: Theme.of(context).iconTheme.color),
+                                    Icon(Icons.account_circle_outlined, color: Colors.black),
                                     SizedBox(width: 8),
                                     Text("Account Information", style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600))
                                   ]
@@ -110,28 +91,33 @@ class _ProfileState extends State<Profile> {
                                       },
                                       child: Text("Change password", style: GoogleFonts.poppins(fontSize: 12))
                                     )
-                                  ),
+                                  )
                                 ]
                               ),
                               ListTile(
-                                title: Text("Switch to Dark Mode", style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600)),
+                                leading: Icon(Icons.dark_mode_rounded, size: 20),
+                                title: Text("Dark Mode", style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600)),
                                 trailing: Switch(
-                                  trackOutlineColor: WidgetStateProperty.all(Colors.black),
-                                  inactiveTrackColor: Colors.white,
-                                  activeTrackColor: Colors.black,
-                                  inactiveThumbColor: Colors.black,
-                                  activeColor: Colors.white,
+                                  activeColor: Color(0xFF0369A1),
                                   value: context.watch<ProfileProvider>().isDark,
-                                  onChanged: (value) => context.read<ProfileProvider>().switchMode(),
-                                ),
+                                  onChanged: (bool value) => context.read<ProfileProvider>().switchMode(value),
+                                )
                               ),
-                              
+                              ListTile(
+                                leading: Icon(Icons.notifications_rounded, size: 20),
+                                title: Text("Enable Notification", style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600)),
+                                trailing: Switch(
+                                  activeColor: Color(0xFF0369A1),
+                                  value: context.watch<ProfileProvider>().isNotificationOn,
+                                  onChanged: (bool value) => context.read<ProfileProvider>().switchNotification(value),
+                                )
+                              )
                             ]
-                          ),
-                        ),
-                      ),
-                    ),
-                  ), 
+                          )
+                        )
+                      )
+                    )
+                  )
                 ]
               )
             )
