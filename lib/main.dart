@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:health_mobile_app/providers/page_provider.dart';
 import 'package:health_mobile_app/providers/profile_provider.dart';
 import 'package:health_mobile_app/screens/new_task.dart';
+import 'package:health_mobile_app/screens/profile_drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:health_mobile_app/providers/todo_provider.dart';
 
@@ -56,6 +57,12 @@ class _MyAppState extends State<MyApp> {
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: Colors.white,
           foregroundColor: Colors.black
+        ),
+        drawerTheme: DrawerThemeData(
+          backgroundColor: Color(0xFF1E1E1E)
+        ),
+        listTileTheme: ListTileThemeData(
+          tileColor: Color(0xFF1E1E1E)
         )
       )
       : ThemeData.light().copyWith(
@@ -76,6 +83,12 @@ class _MyAppState extends State<MyApp> {
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: Color(0xFF1E1E1E),
           foregroundColor: Colors.white
+        ),
+        drawerTheme: DrawerThemeData(
+          backgroundColor: Colors.white
+        ),
+        listTileTheme: ListTileThemeData(
+          tileColor: Colors.white
         )
       ),
       home: Scaffold(
@@ -128,7 +141,8 @@ class _MyAppState extends State<MyApp> {
             BottomNavigationBarItem(icon: Icon(Icons.task_outlined), label: "Tasks"),
             BottomNavigationBarItem(icon: Icon(Icons.person_2_rounded), label: "Profile"),
           ]
-        )
+        ),
+        drawer: ProfileDrawer(),
       )
     );
   }
