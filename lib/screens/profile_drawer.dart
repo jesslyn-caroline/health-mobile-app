@@ -22,7 +22,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
       child: ListView(
         children: [
           Container(
-            height: 150,
+            height: 180,
             padding: EdgeInsets.symmetric(horizontal: 23, vertical: 20),
             decoration: BoxDecoration(
               color: Colors.black,
@@ -55,6 +55,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
               ],                    
             ),
           ),
+          SizedBox(height: 15),
           ExpansionTile(
             shape: Border(),
             tilePadding: EdgeInsets.symmetric(horizontal: 23, vertical: 5),
@@ -106,6 +107,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
               )
             ]
           ),
+          Divider(),
           ListTile(
             contentPadding: EdgeInsets.symmetric(horizontal: 23, vertical: 5),
             leading: Icon(Icons.dark_mode_rounded, size: 20),
@@ -125,7 +127,8 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
               value: context.watch<ProfileProvider>().isNotificationOn,
               onChanged: (bool value) => context.read<ProfileProvider>().switchNotification(value),
             )
-          )
+          ),
+          Divider()
         ]
       )
     );
