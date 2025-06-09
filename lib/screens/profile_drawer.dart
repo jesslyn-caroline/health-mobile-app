@@ -107,7 +107,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
             ]
           ),
           ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 23),
+            contentPadding: EdgeInsets.symmetric(horizontal: 23, vertical: 5),
             leading: Icon(Icons.dark_mode_rounded, size: 20),
             title: Text("Dark Mode", style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600)),
             trailing: Switch(
@@ -117,7 +117,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
             )
           ),
           ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 23),
+            contentPadding: EdgeInsets.symmetric(horizontal: 23, vertical: 5),
             leading: Icon(Icons.notifications_rounded, size: 20),
             title: Text("Enable Notification", style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w600)),
             trailing: Switch(
