@@ -148,7 +148,6 @@ class _MyAppState extends State<MyApp> {
             BottomNavigationBarItem(icon: Icon(Icons.home_rounded), label: "Home"),
             BottomNavigationBarItem(icon: Icon(Icons.article_rounded), label: "Articles"),
             BottomNavigationBarItem(icon: Icon(Icons.task_outlined), label: "Tasks"),
-            BottomNavigationBarItem(icon: Icon(Icons.person_2_rounded), label: "Profile"),
           ]
         ),
         drawer: ProfileDrawer()
