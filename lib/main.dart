@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:health_mobile_app/components/new_note_button.dart';
+import 'package:health_mobile_app/components/add_task_button.dart';
+import 'package:health_mobile_app/components/profile_drawer.dart';
 import 'package:health_mobile_app/providers/page_provider.dart';
 import 'package:health_mobile_app/providers/profile_provider.dart';
-import 'package:health_mobile_app/screens/bottom_sheet_new_task.dart';
-import 'package:health_mobile_app/screens/new_task.dart';
-import 'package:health_mobile_app/screens/profile_drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:health_mobile_app/providers/todo_provider.dart';
 
@@ -107,6 +105,9 @@ class _MyAppState extends State<MyApp> {
           style: IconButton.styleFrom(
             foregroundColor: Colors.black
           )
+        ),
+        tabBarTheme: TabBarTheme(
+          unselectedLabelColor: Color(0xFF1E1E1E),
         )
       ),
       home: Scaffold(
@@ -131,11 +132,7 @@ class _MyAppState extends State<MyApp> {
         ),
         floatingActionButton:
         context.watch<PageProvider>().pageIndex == 2
-        ? Builder(
-          builder: (context) {
-            return NewNoteButton();
-          }
-        )
+        ? Builder(builder: (context) => AddTaskButton())
         : null,
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
@@ -154,7 +151,7 @@ class _MyAppState extends State<MyApp> {
             BottomNavigationBarItem(icon: Icon(Icons.person_2_rounded), label: "Profile"),
           ]
         ),
-        drawer: ProfileDrawer(),
+        drawer: ProfileDrawer()
       )
     );
   }

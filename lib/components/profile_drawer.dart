@@ -5,55 +5,58 @@ import 'package:health_mobile_app/screens/change_password.dart';
 import 'package:health_mobile_app/screens/change_username.dart';
 import 'package:provider/provider.dart';
 
-class ProfileDrawer extends StatefulWidget {
+class ProfileDrawer extends StatelessWidget {
   const ProfileDrawer({super.key});
 
-  @override
-  State<ProfileDrawer> createState() => _ProfileDrawerState();
-}
-
-class _ProfileDrawerState extends State<ProfileDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
       width: 400,
       shape: RoundedRectangleBorder(),
-      // backgroundColor: Colors.white,
       child: ListView(
         children: [
           Container(
-            height: 180,
-            padding: EdgeInsets.symmetric(horizontal: 23, vertical: 20),
+            height: 200,
+            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
             decoration: BoxDecoration(
               color: Colors.black,
-              borderRadius: BorderRadius.circular(5)
+              // borderRadius: BorderRadius.circular(5)
+              
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Builder(
-                  builder: (context) => IconButton(
-                    style: IconButton.styleFrom(
-                      padding: EdgeInsets.all(0)
-                    ),
-                    icon: Icon(Icons.arrow_back_ios, size: 20, color: Colors.white),
-                    onPressed: () => Navigator.pop(context),
-                  ),
+                  builder: (context) {
+                    return IconButton(
+                      style: IconButton.styleFrom(
+                        padding: EdgeInsets.zero
+                      ),
+                      onPressed: () => Navigator.pop(context),
+                      icon: Icon(Icons.arrow_back_ios, size: 20, color: Colors.white)
+                    );
+                  }
                 ),
                 Row(
                   children: [
                     CircleAvatar(
-                      radius: 23, 
+                      radius: 20,
                       backgroundColor: Color(0xFFD9D9D9),
-                      child: Text(context.watch<ProfileProvider>().username[0], style: GoogleFonts.poppins(color: Colors.black, fontSize: 17, fontWeight: FontWeight.w600)),
+                      child: Text(
+                        context.watch<ProfileProvider>().username[0],
+                        style: GoogleFonts.poppins(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600)
+                      )
                     ),
-                    SizedBox(width: 13,),
-                    Text(context.watch<ProfileProvider>().username, style: GoogleFonts.poppins(color: Colors.white, fontSize: 17, fontWeight: FontWeight.w600))
-                  ],
+                    SizedBox(width: 12),
+                    Text(
+                      context.watch<ProfileProvider>().username,
+                      style: GoogleFonts.poppins(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600)
+                    )
+                  ]
                 )
-              ],                    
-            ),
+              ]
+            )
           ),
           SizedBox(height: 15),
           ExpansionTile(
@@ -115,7 +118,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
             trailing: Switch(
               activeColor: Color(0xFF0369A1),
               value: context.watch<ProfileProvider>().isDark,
-              onChanged: (bool value) => context.read<ProfileProvider>().switchMode(value),
+              onChanged: (value) => context.read<ProfileProvider>().switchMode(value),
             )
           ),
           ListTile(
@@ -125,7 +128,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
             trailing: Switch(
               activeColor: Color(0xFF0369A1),
               value: context.watch<ProfileProvider>().isNotificationOn,
-              onChanged: (bool value) => context.read<ProfileProvider>().switchNotification(value),
+              onChanged: (value) => context.read<ProfileProvider>().switchNotification(value),
             )
           ),
           Divider()

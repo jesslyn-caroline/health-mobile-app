@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:health_mobile_app/providers/profile_provider.dart';
 import 'package:health_mobile_app/providers/todo_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -45,7 +44,7 @@ class ToDoCard extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () => context.read<TodoProvider>().removeTask(task),
-                icon: Icon(Icons.delete_rounded, color: Theme.of(context).iconTheme.color, size: 28)
+                icon: Icon(Icons.delete_rounded, color: Theme.of(context).iconTheme.color, size: 25)
               )
             ]
           )

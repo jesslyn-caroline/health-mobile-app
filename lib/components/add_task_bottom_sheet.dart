@@ -3,47 +3,42 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:health_mobile_app/providers/todo_provider.dart';
 import 'package:provider/provider.dart';
 
-class BottomSheetNewTask extends StatefulWidget {
-  const BottomSheetNewTask({super.key});
+class AddTaskBottomSheet extends StatefulWidget {
+  const AddTaskBottomSheet({super.key});
 
   @override
-  State<BottomSheetNewTask> createState() => _BottomSheetNewTaskState();
+  State<AddTaskBottomSheet> createState() => _AddTaskBottomSheetState();
 }
 
-class _BottomSheetNewTaskState extends State<BottomSheetNewTask> {
+class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
 
   TextEditingController taskTitleC = TextEditingController();
 
   List<String> categories = ["Fitness", "Nutrition", "Self Care", "Other"];
   String? taskCategory = "Fitness";
-
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [  
-            IconButton(
-              style: IconButton.styleFrom(
-                padding: EdgeInsets.all(0),
-              ),
-              onPressed: () {
-                setState(() {
-                  taskTitleC.text = "";
-                  taskCategory = "Fitness";
-                });
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.close, size: 30)
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("New Task", style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w600)),
-                SizedBox(height: 12),
+      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                taskTitleC.clear();
+                taskCategory = "Fitness";
+              });
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.close, size: 30)
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 TextField(
                   controller: taskTitleC,
                   maxLines: 2,
@@ -91,7 +86,7 @@ class _BottomSheetNewTaskState extends State<BottomSheetNewTask> {
                     ]
                   ),
                 ),
-                SizedBox(height: 12),
+                SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -134,10 +129,10 @@ class _BottomSheetNewTaskState extends State<BottomSheetNewTask> {
                   ]
                 )
               ]
-            ),
-          )   
+            )
+          )
         ]
-      ),
+      )
     );
   }
 }
