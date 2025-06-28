@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
           style: IconButton.styleFrom(
             foregroundColor: Colors.white
           )
-        )
+        ),
       )
       : ThemeData.light().copyWith(
         scaffoldBackgroundColor: Color(0xFFFAFAFA),
@@ -108,7 +108,7 @@ class _MyAppState extends State<MyApp> {
         ),
         tabBarTheme: TabBarTheme(
           unselectedLabelColor: Color(0xFF1E1E1E),
-        )
+        ),     
       ),
       home: Scaffold(
         appBar: context.watch<PageProvider>().pageName == ""
